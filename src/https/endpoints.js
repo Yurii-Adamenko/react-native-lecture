@@ -1,5 +1,5 @@
 const FIREBASE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts';
-const API_KEY = 'YOUR_API_KEY';
+const API_KEY = 'AIzaSyD3wQALVLf0LA2i6hLgO616oGPlPRqotH4';
 
 // https://firebase.google.com/docs/reference/rest/auth#section-create-email-password
 export const SIGN_UP = `${FIREBASE_URL}:signUp?key=${API_KEY}`;
