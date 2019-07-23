@@ -1,5 +1,6 @@
 import Dashboard from "./Dashboard/Dashboard";
-import Login from "./Login/Login";
+import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
 import DetailedView from "./DetailedView/DetailedView";
 
-export { Login, Dashboard, DetailedView };
+export { SignIn, SignUp, Dashboard, DetailedView };

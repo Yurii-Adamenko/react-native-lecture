@@ -1,13 +1,29 @@
 import {
   createStackNavigator,
   createSwitchNavigator,
+  createDrawerNavigator,
   createAppContainer
 } from "react-navigation";
-import { Login, Dashboard, DetailedView } from "./screens";
+import { View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { SignIn, SignUp, Dashboard, DetailedView, Drawer } from "./screens";
 
-const LoginStack = createStackNavigator({
-  Login: {
-    screen: Login
+const AuthStack = createStackNavigator({
+  SignIn: {
+    screen: SignIn
+  },
+  SignUp: {
+    screen: SignUp
+  }
+},
+{
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#8aaede'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    }
   }
 });
 
@@ -20,9 +36,19 @@ const DashboardStack = createStackNavigator({
   }
 });
 
+
+const DrawerNavigator = createDrawerNavigator({
+  DashboardStack: { screen: DashboardStack }
+}, {
+  // drawerWidth: 300,
+  drawerPosition: 'right',
+  // hideStatusBar: false
+  contentComponent: Drawer
+});
+
 const AppContainer = createSwitchNavigator({
-  Login: { screen: LoginStack },
-  Dashboard: { screen: DashboardStack }
+  Auth: { screen: AuthStack },
+  App: { screen: DrawerNavigator }
 });
 
 export default createAppContainer(AppContainer);

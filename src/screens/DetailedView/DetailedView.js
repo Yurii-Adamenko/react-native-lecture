@@ -9,4 +9,8 @@ const DetailedView = () => {
   );
 };
 
+DetailedView.navigationOptions = {
+  title: 'DetailedView'
+};
+
 export default DetailedView;

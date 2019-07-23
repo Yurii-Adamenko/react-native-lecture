@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
+import FlashMessage from "react-native-flash-message";
 import AppNavigator from './src/AppNavigator';
 import store from './src/store/store';
 
@@ -47,6 +48,7 @@ const App = ({ skipLoadingScreen }) => {
     <Provider store={store}>
       {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
       <AppNavigator />
+      <FlashMessage position="bottom" />
     </Provider>
   );
 };
