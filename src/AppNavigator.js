@@ -3,29 +3,32 @@ import {
   createSwitchNavigator,
   createDrawerNavigator,
   createAppContainer
-} from "react-navigation";
-import { View, Text, ScrollView, SafeAreaView } from 'react-native';
-import { SignIn, SignUp, Dashboard, DetailedView, Drawer } from "./screens";
+} from 'react-navigation';
+import { SignIn, SignUp, Dashboard, DetailedView } from './screens';
+import { Drawer } from './components';
 
-const AuthStack = createStackNavigator({
-  SignIn: {
-    screen: SignIn
-  },
-  SignUp: {
-    screen: SignUp
-  }
-},
-{
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: '#8aaede'
+
+const AuthStack = createStackNavigator(
+  {
+    SignIn: {
+      screen: SignIn
     },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold'
+    SignUp: {
+      screen: SignUp
+    }
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#8aaede'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
     }
   }
-});
+);
 
 const DashboardStack = createStackNavigator({
   Dashboard: {
@@ -36,15 +39,15 @@ const DashboardStack = createStackNavigator({
   }
 });
 
-
-const DrawerNavigator = createDrawerNavigator({
-  DashboardStack: { screen: DashboardStack }
-}, {
-  // drawerWidth: 300,
-  drawerPosition: 'right',
-  // hideStatusBar: false
-  contentComponent: Drawer
-});
+const DrawerNavigator = createDrawerNavigator(
+  {
+    DashboardStack: { screen: DashboardStack }
+  },
+  {
+    drawerPosition: 'right',
+    contentComponent: Drawer
+  }
+);
 
 const AppContainer = createSwitchNavigator({
   Auth: { screen: AuthStack },

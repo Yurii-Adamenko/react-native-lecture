@@ -9,7 +9,7 @@ export const signIn = (email, password, navigation) => dispatch => {
   dispatch(requestStart());
 
   axios
-    .post(LOG_IN, { email: 'qwer@qwer.qwer', password: 'qwer123' })
+    .post(LOG_IN, { email, password })
     .then(res => {
       AsyncStorage.setItem('access_token', res.data.idToken);
       dispatch(requestSuccess(res.data));
@@ -34,7 +34,7 @@ export const signUp = (email, password, navigation) => dispatch => {
   dispatch(requestStart());
 
   axios
-    .post(SIGN_UP, { email: 'sdfsdf', password: 'asdasdasd' })
+    .post(SIGN_UP, { email, password })
     .then(res => {
       dispatch(requestSuccess(res.data));
       showMessage({
@@ -53,3 +53,8 @@ export const signUp = (email, password, navigation) => dispatch => {
       dispatch(requestError(error))
     });
 };
+
+export const logOut = navigation => dispatch => {
+  AsyncStorage.clear();
+  navigation.navigate("SignIn");
+}

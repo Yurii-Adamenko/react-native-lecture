@@ -1,31 +1,38 @@
-import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
-import { DrawerItems } from 'react-navigation';
-import styles from './style';
-import { ThemedButton } from '../ThemedButton/ThemedButton';
+import React from 'react';
+import { View } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class Drawer extends Component {
-  render() {
-    console.log(props);
-    console.log(this.props);
-    return (
+import { DrawerItems } from 'react-navigation';
+// eslint-disable-next-line import/no-cycle
+import { ThemedButton } from '..';
+import { logOut } from '../../store/actions/auth/authActions';
+
+const Drawer = ({ navigation, logOut, ...props }) => {
+  clickLogOut = () => {
+    logOut(navigation);
+  };
+
+  return (
+    <View
+      style={{ padding: 20, marginVertical: 50, flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}
+    >
       <View>
-        {/* <DrawerItems
-          {...props}
-          getLabel={scene => (
-            <View>
-              <Text>{props.getLabel(scene)}</Text>
-            </View>
-          )}
-        /> */}
-        <DrawerItems {...props}/>
-        <Text>It's Drawer</Text>
-        <Text>It's Drawer</Text>
-        <Text>It's Drawer</Text>
-        <Text>It's Drawer</Text>
-        <Text>It's Drawer</Text>
-        <ThemedButton title="LogOut" />
+        <ThemedButton title="Dashboard" onPress={() => navigation.navigate('Dashboard')} />
+        <ThemedButton title="DetailedView" onPress={() => navigation.navigate('DetailedView')} />
+        {/* <DrawerItems {...props} /> */}
       </View>
-    );
-  }
-}
+      <ThemedButton title="LogOut" onPress={this.clickLogOut} />
+    </View>
+  );
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    logOut: navigation => dispatch(logOut(navigation))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Drawer);

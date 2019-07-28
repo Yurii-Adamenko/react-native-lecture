@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Text, AsyncStorage } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import _ from 'lodash';
@@ -17,28 +17,28 @@ const SignUp = ({ navigation, signUp, loaderStatus }) => {
           signUp(values.email, values.password, navigation);
         }, 1000)();
       }}
-      // validationSchema={AuthFormValidationSchema}
+      validationSchema={AuthFormValidationSchema}
     >
       {({ values, errors, touched, handleChange, setFieldTouched, handleSubmit }) => (
         <ScrollView style={{ padding: 20 }}>
           {loaderStatus ? (
-            <ThemedLoader color={'#8aaede'} size={100} />
+            <ThemedLoader color='#8aaede' size={100} />
           ) : (
             <View>
-              <ThemedLabel labelText={'Email:'} />
+              <ThemedLabel labelText='Email:' />
               <ThemedInput
                 value={values.email}
                 name="email"
-                placeholder={'Email'}
+                placeholder='Email'
                 onChangeText={handleChange('email')}
                 onBlur={() => setFieldTouched('email')}
               />
               {errors.email && touched.email && <ThemedErrorMessage errorMessage={errors.email} />}
-              <ThemedLabel labelText={'Password:'} />
+              <ThemedLabel labelText='Password:' />
               <ThemedInput
                 value={values.password}
                 name="password"
-                placeholder={'Password'}
+                placeholder='Password'
                 onChangeText={handleChange('password')}
                 onBlur={() => setFieldTouched('password')}
                 secureTextEntry

@@ -13,7 +13,7 @@ const SignIn = ({ navigation, signIn, loaderStatus }) => {
     AsyncStorage.getItem('access_token')
       .then(res => {
         if (res) {
-          // navigation.navigate("Dashboard")
+          navigation.navigate("Dashboard")
         }
         return true;
       })
@@ -27,28 +27,28 @@ const SignIn = ({ navigation, signIn, loaderStatus }) => {
           signIn(values.email, values.password, navigation);
         }, 1000)();
       }}
-      // validationSchema={AuthFormValidationSchema}
+      validationSchema={AuthFormValidationSchema}
     >
       {({ values, errors, touched, handleChange, setFieldTouched, handleSubmit }) => (
         <ScrollView style={{ padding: 20 }}>
           {loaderStatus ? (
-            <ThemedLoader color={'#8aaede'} size={100} />
+            <ThemedLoader color='#8aaede' size={100} />
           ) : (
             <View>
-              <ThemedLabel labelText={'Email:'} />
+              <ThemedLabel labelText='Email:' />
               <ThemedInput
                 value={values.email}
                 name="email"
-                placeholder={'Email'}
+                placeholder='Email'
                 onChangeText={handleChange('email')}
                 onBlur={() => setFieldTouched('email')}
               />
               {errors.email && touched.email && <ThemedErrorMessage errorMessage={errors.email} />}
-              <ThemedLabel labelText={'Password:'} />
+              <ThemedLabel labelText='Password:' />
               <ThemedInput
                 value={values.password}
                 name="password"
-                placeholder={'Password'}
+                placeholder='Password'
                 onChangeText={handleChange('password')}
                 onBlur={() => setFieldTouched('password')}
                 secureTextEntry
